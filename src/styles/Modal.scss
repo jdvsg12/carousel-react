@@ -1,0 +1,38 @@
+@import '../index.scss';
+
+.modal {
+  position: absolute;
+  background: $secundary-background-color;
+  color: $primary-background-color;
+  opacity: 90%;
+  width: 200px;
+  height: 150px;
+  inset: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: $radio-corner;
+  box-shadow: inset 0px 0px 55px 22px rgba(0, 0, 0, 0.75);
+  padding: 1rem;
+
+  svg {
+    animation: rotate-center 1s ease-in-out infinite;
+  }
+}
+
+.rotate-center {
+  animation: rotate-center 0.4s;
+}
+@keyframes rotate-center {
+  0% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}

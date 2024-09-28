@@ -4,50 +4,47 @@ import '../styles/CoverFlow.scss'
 const images = [
   'https://fastly.picsum.photos/id/9/5000/3269.jpg?hmac=cZKbaLeduq7rNB8X-bigYO8bvPIWtT-mh8GRXtU3vPc',
   'https://fastly.picsum.photos/id/9/5000/3269.jpg?hmac=cZKbaLeduq7rNB8X-bigYO8bvPIWtT-mh8GRXtU3vPc',
-  'https://fastly.picsum.photos/id/9/5000/3269.jpg?hmac=cZKbaLeduq7rNB8X-bigYO8bvPIWtT-mh8GRXtU3vPc',
-  'https://fastly.picsum.photos/id/9/5000/3269.jpg?hmac=cZKbaLeduq7rNB8X-bigYO8bvPIWtT-mh8GRXtU3vPc',
-  'https://fastly.picsum.photos/id/9/5000/3269.jpg?hmac=cZKbaLeduq7rNB8X-bigYO8bvPIWtT-mh8GRXtU3vPc',
   'https://fastly.picsum.photos/id/9/5000/3269.jpg?hmac=cZKbaLeduq7rNB8X-bigYO8bvPIWtT-mh8GRXtU3vPc'
+  // 'https://fastly.picsum.photos/id/9/5000/3269.jpg?hmac=cZKbaLeduq7rNB8X-bigYO8bvPIWtT-mh8GRXtU3vPc',
+  // 'https://fastly.picsum.photos/id/9/5000/3269.jpg?hmac=cZKbaLeduq7rNB8X-bigYO8bvPIWtT-mh8GRXtU3vPc',
+  // 'https://fastly.picsum.photos/id/9/5000/3269.jpg?hmac=cZKbaLeduq7rNB8X-bigYO8bvPIWtT-mh8GRXtU3vPc'
 ]
 
 const Coverflow = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const totalImages = images.length
 
-  const moveCoverflow = () => {
-    setCurrentIndex(prevIndex => {
-      const newIndex = prevIndex + 1
-      return newIndex >= images.length ? 0 : newIndex // Volver al inicio
-    })
-  }
+  // Calcula el desplazamiento del wrapper para centrar el elemento activo
+  const translateX =
+    totalImages > 1
+      ? -(activeIndex * (300 + 30) - (window.innerWidth / 2 - 150)) // Ajusta según $coverflow-item-width y $coverflow-item-gap
+      : 0 // No mover si solo hay una imagen
 
-  // Desplazamiento automático
+  // Automáticamente cambia la imagen activa cada 3 segundos si hay más de una imagen
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isPaused) {
-        moveCoverflow()
-      }
-    }, 3000) // Cambiar cada 3 segundos
+    if (totalImages > 1) {
+      const interval = setInterval(() => {
+        setActiveIndex(prevIndex => (prevIndex + 1) % totalImages) // Avanza al siguiente índice
+      }, 1500) // Cambiar cada 3 segundos
 
-    return () => clearInterval(interval) // Limpiar el intervalo al desmontar
-  }, [isPaused])
+      return () => clearInterval(interval) // Limpia el intervalo al desmontar el componente
+    }
+  }, [totalImages])
 
   return (
-    <div
-      className='coverflow'
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
+    <div className='coverflow'>
       <div
-        className='coverflow__wrapper'
-        style={{ transform: `translateX(-${currentIndex * 200}px)` }}
+        className={`coverflow__wrapper ${
+          images.length === 1 && 'single-image'
+        }`}
+        style={{ transform: `translateX(${translateX}px)` }}
       >
         {images.map((image, index) => (
           <div
-            key={index}
             className={`coverflow__item ${
-              index === currentIndex ? 'active' : ''
+              index === activeIndex ? 'active' : ''
             }`}
+            key={index}
           >
             <img src={image} alt={`Image ${index + 1}`} />
           </div>

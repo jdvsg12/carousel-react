@@ -11,12 +11,14 @@ $progress-font-size: 1.2rem; // Tamaño del texto de porcentaje tachado.
 $button-font-size: 1rem; // Tamaño del texto del botón "STOP".
 $button-padding: 0.5rem 1rem;
 
+$radio-corner: 2rem;
+
 html,
 body {
   height: 100%;
   font-size: 100%;
   line-height: 1.5;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 img,
