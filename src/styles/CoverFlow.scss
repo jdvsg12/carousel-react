@@ -1,0 +1,42 @@
+$coverflow-width: 80%;
+$coverflow-item-width: 300px;
+$coverflow-item-scale: 1.2;
+
+.coverflow {
+  position: relative;
+  width: $coverflow-width;
+  height: 100%;
+  perspective: 1000px; // Añadir perspectiva
+  margin: auto;
+
+  &__wrapper {
+    display: flex;
+    transition: transform 5s ease;
+    width: calc(#{$coverflow-item-width} * #{length(images)});
+    margin: auto;
+  }
+
+  &__item {
+    min-width: $coverflow-item-width;
+    height: 100%;
+    transition: transform 5s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    &.active {
+      transform: scale($coverflow-item-scale);
+      opacity: 1;
+    }
+
+    &:not(.active) {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+  }
+}

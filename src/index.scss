@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$primary-background-color: #ffffff; // Color del fondo general.
+$secundary-background-color: #1b1e2a; // Color del fondo general.
+$progress-bar-color: #ff4757; // Color del porcentaje o progreso tachado.
+$text-color: #191919; // Color del texto general.
+$button-background-color: #2e3348; // Color del fondo del botón "STOP".
+$button-text-color: #ff4757;
+
+$progress-font-size: 1.2rem; // Tamaño del texto de porcentaje tachado.
+$button-font-size: 1rem; // Tamaño del texto del botón "STOP".
+$button-padding: 0.5rem 1rem;
+
+html,
+body {
+  height: 100%;
+  font-size: 100%;
+  line-height: 1.5;
+  font-family: sans-serif;
+}
+
+img,
+picture,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
