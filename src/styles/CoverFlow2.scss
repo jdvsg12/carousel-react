@@ -1,0 +1,81 @@
+.coverflow {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+  margin: 0 auto;
+  background-color: transparent; // Asegúrate de que el contenedor también tenga fondo transparente
+}
+
+.coverflow__wrapper {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: fit-content;
+  transition: transform 0.5s ease; // Transición suave al mover el contenedor
+
+  &.single-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: none;
+    margin: auto;
+    max-width: calc(100vw);
+  }
+}
+
+.coverflow__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100vw / 3); // Ajustar el ancho para mostrar 3 imágenes
+  height: 100svh;
+  margin: 0 auto; // Ajusta según coverflowItemGap
+  background-color: transparent; // Asegúrate de que cada item también tenga fondo transparente
+
+  img {
+    max-width: 90%;
+    width: 100%;
+    height: 100%;
+    min-height: 50svh;
+    object-fit: contain;
+    aspect-ratio: auto;
+    background-color: transparent; // Asegúrate de que la imagen no tenga un fondo blanco
+    border: none; // Opcional: elimina bordes si los hay
+    mix-blend-mode: darken;
+  }
+
+  &.active {
+    animation: coverflowActive 1.5s forwards; // Cambia a la nueva animación
+  }
+
+  &:not(.active) {
+    animation: coverflowInactive 1.5s forwards; // Cambia a la nueva animación
+  }
+}
+
+@keyframes coverflowActive {
+  0% {
+    transform: scale(0.8) translateX(60%); // Mueve la imagen hacia la derecha y reduce su tamaño
+  }
+  50% {
+    transform: scale(1.2) translateX(0%); // Mueve la imagen al frente y a la posición original
+  }
+  100% {
+    transform: scale(0.8) translateX(-100%); // Trae la imagen al frente y a la posición original
+  }
+}
+
+@keyframes coverflowInactive {
+  0% {
+    transform: scale(0.8) translateX(60%); // Tamaño normal, en su posición original
+  }
+  50% {
+    transform: scale(0.8) translateX(0); // Reduce el tamaño y mueve hacia la izquierda
+  }
+
+  100% {
+    transform: scale(0.8) translateX(-120%);
+  }
+}
