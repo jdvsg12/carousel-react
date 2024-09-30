@@ -22,7 +22,7 @@ const Coverflow2 = () => {
           const newIndex = (prev[0] + 1) % totalImages // Solo actualizar el primer índice
           return prev.map((_, i) => (newIndex + i) % totalImages) // Rotar imágenes visibles
         })
-      }, 1000) // Intervalo de tiempo para cambiar la imagen
+      }, 2000) // Intervalo de tiempo para cambiar la imagen
 
       return () => clearInterval(interval) // Limpia el intervalo al desmontar el componente
     }
@@ -50,7 +50,6 @@ const Coverflow2 = () => {
               totalImages === 1 ? 'single-image' : 'coverflow__item'
             } ${i === 1 ? 'active' : ''}  `} // La imagen del medio es la activa
             key={index}
-            // style={{ transform: `translateX(-${i * 100}%)` }} // Desplazamiento suave
           >
             <img
               src={initialImages[index].url}
