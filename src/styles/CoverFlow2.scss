@@ -49,8 +49,26 @@
     animation: coverflowActive 2.8s forwards; // Cambia a la nueva animación
   }
 
-  &:not(.active) {
+  &:first-child {
     animation: coverflowInactive 2.8s forwards; // Cambia a la nueva animación
+  }
+
+  &:last-child {
+    animation: coverflowLastchild 2.8s forwards; // Cambia a la nueva animación
+  }
+}
+
+@keyframes coverflowLastchild {
+  0% {
+    transform: scale(0.8) translateX(40%);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(0.8) translateX(0);
+  }
+  100% {
+    transform: scale(0.8) translateX(-120%);
+    opacity: 1;
   }
 }
 
