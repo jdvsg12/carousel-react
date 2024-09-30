@@ -11,16 +11,15 @@ const initialImages = [
 ]
 
 const Coverflow2 = () => {
-  const [visibleImages, setVisibleImages] = useState([0, 1, 2]) // Muestra las imágenes visibles
+  const [visibleImages, setVisibleImages] = useState([0, 1, 2])
   const totalImages = initialImages.length
 
-  // Efecto para manejar la rotación de imágenes
   useEffect(() => {
     if (totalImages > 1) {
       const interval = setInterval(() => {
         setVisibleImages(prev => {
-          const newIndex = (prev[0] + 1) % totalImages // Solo actualizar el primer índice
-          return prev.map((_, i) => (newIndex + i) % totalImages) // Rotar imágenes visibles
+          const newIndex = (prev[0] + 1) % totalImages
+          return prev.map((_, i) => (newIndex + i) % totalImages)
         })
       }, 2000) // Intervalo de tiempo para cambiar la imagen
 
@@ -28,12 +27,11 @@ const Coverflow2 = () => {
     }
   }, [totalImages])
 
-  // Manejo de casos con 1, 2 o 3+ imágenes
   const handleVisibleImages = () => {
     if (totalImages === 1) {
-      return [0] // Muestra la única imagen sin animación
+      return [0]
     } else if (totalImages === 2) {
-      return visibleImages.slice(0, 2) // Muestra solo las dos imágenes y continúa la animación
+      return visibleImages.slice(0, 2)
     } else {
       return visibleImages // Para 3 o más imágenes, muestra las 3 con animación
     }
