@@ -27,6 +27,9 @@
       &.active {
         animation: coverflowActive 2.8s forwards;
       }
+      &.activeTwoChild {
+        animation: coverflowActiveTwoChild 2.8s forwards;
+      }
 
       &:first-child {
         animation: coverflowFirstChild 2.8s forwards;
@@ -34,6 +37,30 @@
 
       &:last-child {
         animation: coverflowLastchild 2.8s forwards;
+      }
+    }
+
+    .coverflow__item_twoChild {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: calc(100vw / 3); // Ajustar el ancho para mostrar 3 imágenes
+      margin: 0 auto;
+
+      img {
+        width: 90%;
+        height: 100%;
+        min-height: 50svh;
+        object-fit: contain;
+        aspect-ratio: auto;
+      }
+
+      &.active {
+        animation: coverflowActiveTwoChildChildren 2.8s forwards;
+      }
+
+      &:first-child {
+        animation: coverflowFirstChild 2.8s forwards;
       }
     }
   }
@@ -73,9 +100,23 @@
   }
 }
 
+@keyframes coverflowActiveTwoChildChildren {
+  0% {
+    transform: scale(0.8) translateX(40%);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) translateX(0%);
+  }
+  100% {
+    transform: scale(0.8) translateX(-109.3%);
+    opacity: 1;
+  }
+}
+
 @keyframes coverflowFirstChild {
   0% {
-    transform: scale(0.9) translateX(29.3%);
+    transform: scale(0.9) translateX(31.5%);
   }
   50% {
     transform: scale(0.8) translateX(0);
