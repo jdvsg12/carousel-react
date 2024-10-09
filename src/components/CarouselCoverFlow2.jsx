@@ -5,7 +5,7 @@ const initialImages = [
   { url: './public/images/1.png', alt: 'Image 1' },
   { url: './public/images/2.png', alt: 'Image 1' },
   { url: './public/images/3.png', alt: 'Image 1' },
-  { url: './public/images/5.png', alt: 'Image 1' }
+  { url: './public/images/3.png', alt: 'Image 1' }
 ]
 
 const Coverflow2 = () => {
@@ -45,7 +45,7 @@ const Coverflow2 = () => {
             className={`
             ${totalImages === 1 ? 'single-image' : ''} 
             ${totalImages === 2 ? 'coverflow__item_twoChild' : ''} 
-            ${totalImages > 3 && 'coverflow__item'} 
+            ${totalImages >= 3 && 'coverflow__item'} 
             ${i === 1 ? 'active' : ''}  `} // La imagen del medio es la activa
             key={index}
           >
