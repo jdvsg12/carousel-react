@@ -2,10 +2,18 @@ import { useState, useEffect } from 'react'
 import '../styles/CoverFlow2.scss'
 
 const initialImages = [
-  { url: './public/images/1.png', alt: 'Image 1' },
-  { url: './public/images/2.png', alt: 'Image 1' },
-  { url: './public/images/3.png', alt: 'Image 1' },
-  { url: './public/images/3.png', alt: 'Image 1' }
+  {
+    url: 'https://fastly.picsum.photos/id/4/5000/3333.jpg?hmac=ghf06FdmgiD0-G4c9DdNM8RnBIN7BO0-ZGEw47khHP4',
+    alt: 'Image 1'
+  },
+  {
+    url: 'https://fastly.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ',
+    alt: 'Image 1'
+  },
+  {
+    url: 'https://fastly.picsum.photos/id/14/2500/1667.jpg?hmac=ssQyTcZRRumHXVbQAVlXTx-MGBxm6NHWD3SryQ48G-o',
+    alt: 'Image 1'
+  }
 ]
 
 const Coverflow2 = () => {
