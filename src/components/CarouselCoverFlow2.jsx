@@ -9,15 +9,14 @@ const initialImages = [
   {
     url: 'https://fastly.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ',
     alt: 'Image 1'
-  },
-  {
-    url: 'https://fastly.picsum.photos/id/14/2500/1667.jpg?hmac=ssQyTcZRRumHXVbQAVlXTx-MGBxm6NHWD3SryQ48G-o',
-    alt: 'Image 1'
   }
 ]
 
 const Coverflow2 = () => {
-  const [visibleImages, setVisibleImages] = useState([0, 1, 2])
+  const VISIBLE_IMAGE_INDEX = [0, 1, 2]
+  const VISIBLE_ONE_IMAGE = [0]
+  const ANIMATE_DELAY = 2000
+  const [visibleImages, setVisibleImages] = useState(VISIBLE_IMAGE_INDEX)
   const totalImages = initialImages.length
 
   useEffect(() => {
@@ -27,19 +26,19 @@ const Coverflow2 = () => {
           const newIndex = (prev[0] + 1) % totalImages
           return prev.map((_, i) => (newIndex + i) % totalImages)
         })
-      }, 2000) // Intervalo de tiempo para cambiar la imagen
+      }, ANIMATE_DELAY) // Intrval timeout animation
 
-      return () => clearInterval(interval) // Limpia el intervalo al desmontar el componente
+      return () => clearInterval(interval) // Clean interval
     }
   }, [totalImages])
 
   const handleVisibleImages = () => {
     if (totalImages === 1) {
-      return [0]
+      return VISIBLE_ONE_IMAGE
     } else if (totalImages === 2) {
       return visibleImages.slice(0, 2)
     } else {
-      return visibleImages // Para 3 o más imágenes, muestra las 3 con animación
+      return visibleImages // 3 elements or more...
     }
   }
 
@@ -47,14 +46,14 @@ const Coverflow2 = () => {
 
   return (
     <div className={`coverflow ${totalImages === 1 ? 'single-image' : ''}`}>
-      <div className='coverflow__wrapper'>
+      <div className='wrapper'>
         {currentImages.map((index, i) => (
           <div
             className={`
             ${totalImages === 1 ? 'single-image' : ''} 
-            ${totalImages === 2 ? 'coverflow__item_twoChild' : ''} 
-            ${totalImages >= 3 && 'coverflow__item'} 
-            ${i === 1 ? 'active' : ''}  `} // La imagen del medio es la activa
+            ${totalImages === 2 ? 'item_twoChild' : ''} 
+            ${totalImages >= 3 && 'item'} 
+            ${i === 1 ? 'active' : ''}  `}
             key={index}
           >
             <img
